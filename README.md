@@ -12,6 +12,11 @@ Installation
 devtools::install_github("jjchern/qhp")
 ```
 
+Links
+=====
+
+-   [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014)
+
 Usage
 =====
 
