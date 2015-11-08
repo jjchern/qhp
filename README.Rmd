@@ -1,0 +1,39 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# About
+
+This package includes Qualified Health Plan (qhp) data in the Health Insurance Marketplace.
+
+# Installation
+
+```r
+# install.packages("devtools")
+devtools::install_github("jjchern/qhp")
+```
+
+# Usage
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+
+qhp::enrollment2014 %>% 
+  filter(!is.na(PlanSelections)) %>% 
+  group_by(countyname) %>% 
+  summarise(enrollment = sum(PlanSelections)) %>% 
+  arrange(desc(enrollment))
+```
+
