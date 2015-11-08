@@ -1,29 +1,28 @@
 library(dplyr)
 library(magrittr)
 
-# Download 2014 Plan selections by ZIP Code for the 36 states -------------
-# Source: http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014
+# Download 2015 Plan selections by ZIP Code for the 37 states -------------
+# Source: http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015
+# (Nov. 15, 2014 — Feb. 15, 2015, including SEP activity through Feb. 22, 2015)
 
-if (!file.exists("data-raw/zipcode-enrollment-2014.csv")) {
-  download.file(url = "http://aspe.hhs.gov/sites/default/files/aspe-files/83866/zipcode-enrollment.xlsx",
-                destfile = "data-raw/zipcode-enrollment-2014.xlsx",
-                quiet = TRUE)
-}
+url = "http://aspe.hhs.gov/sites/default/files/aspe-files/83841/2015-feb-22-marketplace-plan-selections-zip.xlsx"
+lcl = "data-raw/zipcode-enrollment-2015.xlsx"
+if (!file.exists(lcl)) download.file(url, lcl)
 
-enrollment2014 = readxl::read_excel(path = "data-raw/zipcode-enrollment-2014.xlsx",
-                             skip = 19,
-                             na = "*")
+enrollment2015 = readxl::read_excel(lcl, skip = 15, na = "*")
 
-names(enrollment2014) %<>%
+enrollment2015 %>%
+  names() %>%
   tolower() %>%
   stringi::stri_trans_totitle() %>%
-  stringr::str_replace_all(" ", "")
+  stringr::str_replace_all(" ", "") ->
+  names(enrollment2015)
 
-enrollment2014 %<>%
+enrollment2015 %<>%
   mutate(ZipCode = as.integer(ZipCode),
          PlanSelections = as.integer(`PlanSelections`))
 
-enrollment2014
+enrollment2015
 
 # Zip code to county link file --------------------------------------------
 
@@ -41,9 +40,10 @@ zipcounty = zipzcta::zipzcta %>%
   arrange(zip)
 zipcounty
 
+
 # Add county and county names ---------------------------------------------
 
-enrollment2014 %<>%
+enrollment2015 %<>%
   left_join(zipcounty, by = c("ZipCode" = "zip"))
 
 # Test --------------------------------------------------------------------
@@ -56,6 +56,6 @@ enrollment2014 %<>%
 
 # Save --------------------------------------------------------------------
 
-enrollment2014
-devtools::use_data(enrollment2014, overwrite = TRUE)
+enrollment2015
+devtools::use_data(enrollment2015, overwrite = TRUE)
 

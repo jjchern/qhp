@@ -14,6 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+[![Travis-CI Build Status](https://travis-ci.org/jjchern/qhp.svg?branch=master)](https://travis-ci.org/jjchern/qhp)
+
+
 # About
 
 This package includes Qualified Health Plan (qhp) data in the Health Insurance Marketplace.
@@ -27,17 +30,81 @@ devtools::install_github("jjchern/qhp")
 
 # Links
 
-- [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014)
+- [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE, 2014](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014)
+- [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE,
+2015](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015)
 
 # Usage
 
 ```{r, message=FALSE, warning=FALSE}
 library(dplyr)
 
+qhp::enrollment2014
+qhp::enrollment2015
+
+# 2014: Top 10 counties with residents enrolling in FFM
+# Sorted according to total enrollment
 qhp::enrollment2014 %>% 
-  filter(!is.na(PlanSelections)) %>% 
-  group_by(countyname) %>% 
-  summarise(enrollment = sum(PlanSelections)) %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
   arrange(desc(enrollment))
+
+# Sorted according to enrollment per 100,000 residents
+qhp::enrollment2014 %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
+  mutate(enroll_per100000 = enrollment / copop * 100000) %>% 
+  filter(copop >= 100000) %>% 
+  arrange(desc(enroll_per100000))
+
+# 2014: Total enrollment by states
+qhp::enrollment2014 %>% 
+  na.omit() %>% 
+  group_by(state) %>% 
+  summarise(statename = first(StateName),
+            enrollment = sum(PlanSelections)) %>% 
+  arrange(enrollment %>% desc) %>% 
+  print(n = 36)
+
+
+# 2015: Top 10 counties with residents enrolling in FFM
+# Sorted according to total enrollment
+qhp::enrollment2015 %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
+  arrange(desc(enrollment))
+
+# Sorted according to enrollment per 1000 residents
+qhp::enrollment2015 %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
+  mutate(enroll_per100000 = enrollment / copop * 100000) %>% 
+  filter(copop >= 100000) %>% 
+  arrange(desc(enroll_per100000))
+
+# 2015: Total enrollment by states
+qhp::enrollment2015 %>% 
+  na.omit() %>% 
+  group_by(state) %>% 
+  summarise(statename = first(StateName),
+            enrollment = sum(PlanSelections)) %>% 
+  arrange(enrollment %>% desc) %>% 
+  print(n = 37)
 ```
 
