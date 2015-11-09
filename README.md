@@ -20,6 +20,7 @@ Links
 -   [ASPE AFFORDABLE CARE ACT RESEARCH](http://aspe.hhs.gov/affordable-care-act-research)
 -   [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE, 2014](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014)
 -   [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE, 2015](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015)
+-   [HEALTH PLAN DATASETS](https://www.healthcare.gov/health-and-dental-plan-datasets-for-researchers-and-issuers/)
 
 Usage
 =====
@@ -267,4 +268,106 @@ qhp::enrollment2015 %>%
 #> 35    WY        Wyoming      19108
 #> 36    SD   South Dakota      16612
 #> 37    ND   North Dakota      13270
+
+# Health Plan Data
+qhp::qhp2014
+#> Source: local data frame [81,015 x 130]
+#> 
+#>    state         county metal_level
+#>    (chr)          (chr)       (chr)
+#> 1     AK ALEUTIANS EAST      Bronze
+#> 2     AK ALEUTIANS EAST      Silver
+#> 3     AK ALEUTIANS EAST        Gold
+#> 4     AK ALEUTIANS EAST        Gold
+#> 5     AK ALEUTIANS EAST      Silver
+#> 6     AK ALEUTIANS EAST      Silver
+#> 7     AK ALEUTIANS EAST      Bronze
+#> 8     AK ALEUTIANS EAST      Bronze
+#> 9     AK ALEUTIANS EAST      Bronze
+#> 10    AK ALEUTIANS EAST      Silver
+#> ..   ...            ...         ...
+#> Variables not shown: issuer_name (chr), plan_id_standard_component (chr),
+#>   plan_marketing_name (chr), plan_type (chr), rating_area (chr),
+#>   child_only_offering (chr), source (chr),
+#>   customer_service_phone_number_local (chr),
+#>   customer_service_phone_number_toll_free (chr),
+#>   customer_service_phone_number_tty (chr), network_url (chr),
+#>   plan_brochure_url (chr), summary_of_benefits_url (chr),
+#>   drug_formulary_url (chr), adult_dental (dbl), child_dental (chr),
+#>   premium_scenarios (dbl), premium_child (dbl),
+#>   premium_adult_individual_age_21 (dbl), premium_adult_individual_age_27
+#>   (dbl), premium_adult_individual_age_30 (dbl),
+#>   premium_adult_individual_age_40 (dbl), premium_adult_individual_age_50
+#>   (dbl), premium_adult_individual_age_60 (dbl), premium_couple_21 (dbl),
+#>   premium_couple_30 (dbl), premium_couple_40 (dbl), premium_couple_50
+#>   (dbl), premium_couple_60 (dbl), couple_1_child_age_21 (dbl),
+#>   couple_1_child_age_30 (dbl), couple_1_child_age_40 (dbl),
+#>   couple_1_child_age_50 (dbl), couple_2_children_age_21 (dbl),
+#>   couple_2_children_age_30 (dbl), couple_2_children_age_40 (dbl),
+#>   couple_2_children_age_50 (dbl), couple_3_or_more_children_age_21 (dbl),
+#>   couple_3_or_more_children_age_30 (dbl), couple_3_or_more_children_age_40
+#>   (dbl), couple_3_or_more_children_age_50 (dbl), individual_1_child_age_21
+#>   (dbl), individual_1_child_age_30 (dbl), individual_1_child_age_40 (dbl),
+#>   individual_1_child_age_50 (dbl), individual_2_children_age_21 (dbl),
+#>   individual_2_children_age_30 (dbl), individual_2_children_age_40 (dbl),
+#>   individual_2_children_age_50 (dbl), individual_3_or_more_children_age_21
+#>   (dbl), individual_3_or_more_children_age_30 (dbl),
+#>   individual_3_or_more_children_age_40 (dbl),
+#>   individual_3_or_more_children_age_50 (dbl), standard_plan_cost_sharing
+#>   (dbl), medical_deductible_individual_standard (chr),
+#>   drug_deductible_individual_standard (chr),
+#>   medical_deductible_family_standard (chr),
+#>   drug_deductible_family_standard (chr),
+#>   medical_maximum_out_of_pocket_individual_standard (chr),
+#>   drug_maximum_out_of_pocket_individual_standard (chr),
+#>   medical_maximum_out_of_pocket_family_standard (chr),
+#>   drug_maximum_out_of_pocket_family_standard (chr),
+#>   primary_care_physician_standard (chr), specialist_standard (chr),
+#>   emergency_room_standard (chr), inpatient_facility_standard (chr),
+#>   inpatient_physician_standard (chr), generic_drugs_standard (chr),
+#>   preferred_brand_drugs_standard (chr), non_preferred_brand_drugs_standard
+#>   (chr), specialty_drugs_standard (chr),
+#>   73_percent_actuarial_value_silver_plan_cost_sharing (dbl),
+#>   medical_deductible_individual_73_percent (chr),
+#>   drug_deductible_individual_73_percent (chr),
+#>   medical_deductible_family_73_percent (chr),
+#>   drug_deductible_family_73_percent (chr),
+#>   medical_maximum_out_of_pocket_individual_73_percent (chr),
+#>   drug_maximum_out_of_pocket_individual_73_percent (chr),
+#>   medical_maximum_out_of_pocket_family_73_percent (chr),
+#>   drug_maximum_out_of_pocket_family_73_percent (chr),
+#>   primary_care_physician_73_percent (chr), specialist_73_percent (chr),
+#>   emergency_room_73_percent (chr), inpatient_facility_73_percent (chr),
+#>   inpatient_physician_73_percent (chr), generic_drugs_73_percent (chr),
+#>   preferred_brand_drugs_73_percent (chr),
+#>   non_preferred_brand_drugs_73_percent (chr), specialty_drugs_73_percent
+#>   (chr), 87_percent_actuarial_value_silver_plan_cost_sharing (dbl),
+#>   medical_deductible_individual_87_percent (chr),
+#>   drug_deductible_individual_87_percent (chr),
+#>   medical_deductible_family_87_percent (chr),
+#>   drug_deductible_family_87_percent (chr),
+#>   medical_maximum_out_of_pocket_individual_87_percent (chr),
+#>   drug_maximum_out_of_pocket_individual_87_percent (chr),
+#>   medical_maximum_out_of_pocket_family_87_percent (chr),
+#>   drug_maximum_out_of_pocket_family_87_percent (chr),
+#>   primary_care_physician_87_percent (chr), specialist_87_percent (chr),
+#>   emergency_room_87_percent (chr), inpatient_facility_87_percent (chr),
+#>   inpatient_physician_87_percent (chr), generic_drugs_87_percent (chr),
+#>   preferred_brand_drugs_87_percent (chr),
+#>   non_preferred_brand_drugs_87_percent (chr), specialty_drugs_87_percent
+#>   (chr), 94_percent_actuarial_value_silver_plan_cost_sharing (dbl),
+#>   medical_deductible_individual_94_percent (chr),
+#>   drug_deductible_individual_94_percent (chr),
+#>   medical_deductible_family_94_percent (chr),
+#>   drug_deductible_family_94_percent (chr),
+#>   medical_maximum_out_of_pocket_individual_94_percent (chr),
+#>   drug_maximum_out_of_pocket_individual_94_percent (chr),
+#>   medical_maximum_out_of_pocket_family_94_percent (chr),
+#>   drug_maximum_out_of_pocket_family_94_percent (chr),
+#>   primary_care_physician_94_percent (chr), specialist_94_percent (chr),
+#>   emergency_room_94_percent (chr), inpatient_facility_94_percent (chr),
+#>   inpatient_physician_94_percent (chr), generic_drugs_94_percent (chr),
+#>   preferred_brand_drugs_94_percent (chr),
+#>   non_preferred_brand_drugs_94_percent (chr), specialty_drugs_94_percent
+#>   (chr), fips (int), state.y (chr)
 ```

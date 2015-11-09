@@ -34,6 +34,7 @@ devtools::install_github("jjchern/qhp")
 - [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE, 2014](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014)
 - [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE,
 2015](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015)
+- [HEALTH PLAN DATASETS](https://www.healthcare.gov/health-and-dental-plan-datasets-for-researchers-and-issuers/)
 
 # Usage
 
@@ -107,5 +108,8 @@ qhp::enrollment2015 %>%
             enrollment = sum(PlanSelections)) %>% 
   arrange(enrollment %>% desc) %>% 
   print(n = 37)
+
+# Health Plan Data
+qhp::qhp2014
 ```
 
