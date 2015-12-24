@@ -36,6 +36,21 @@ devtools::install_github("jjchern/qhp")
 2015](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015)
 - [HEALTH PLAN DATASETS](https://www.healthcare.gov/health-and-dental-plan-datasets-for-researchers-and-issuers/)
 
+## Inital Enrollment Data
+
+- [HEALTH INSURANCE MARKETPLACE: SUMMARY ENROLLMENT REPORT FOR THE INITIAL ANNUAL OPEN ENROLLMENT PERIOD](https://aspe.hhs.gov/report/health-insurance-marketplace-summary-enrollment-report-initial-annual-open-enrollment-period)
+- [ADDENDUM TO THE HEALTH INSURANCE MARKETPLACE SUMMARY ENROLLMENT REPORT FOR THE INITIAL ANNUAL OPEN ENROLLMENT PERIOD](https://aspe.hhs.gov/sites/default/files/pdf/93351/ib_2014Apr_enrollAddendum.pdf)
+
+## Second Enrollment Data
+
+- [QHP Selections by Age Groups](https://data.healthcare.gov/dataset/2015-Qualifying-Health-Plan-Selections-by-Age-Grou/qv54-6mtm)
+- [QHP Selections by APTC](https://data.healthcare.gov/dataset/2015-Qualifying-Health-Plan-Selections-by-APTC-and/f7yt-nc7m)
+- [QHP Selections by Household Incomes](https://data.healthcare.gov/dataset/2015-Qualifying-Health-Plan-Selections-by-Househol/sy6b-59wj)
+- [QHP Selections by Race/ethnicity](https://data.healthcare.gov/dataset/2015-Qualifying-Health-Plan-Selections-by-Race-Eth/dvpf-jb7v)
+- [QHP Selections by Types of Selections](https://data.healthcare.gov/dataset/2015-Qualifying-Health-Plan-Selections-by-Type-of-/kjvw-ka5c)
+- [QHP Selections by CSR](https://data.healthcare.gov/dataset/2015-Qualifying-Health-Plan-Selections-by-CSR-and-/ncbw-vdsn)
+- [QHP Selections by Metal Levels](https://data.healthcare.gov/dataset/2015-Qualifying-Health-Plan-Selections-by-Metal-Le/d89b-9897)
+
 # Usage
 
 ```{r, message=FALSE, warning=FALSE}
