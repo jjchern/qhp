@@ -42,9 +42,11 @@ Second Enrollment Data
 Usage
 =====
 
-``` r
-library(dplyr)
+Zip Code Level Enrollment Data
+------------------------------
 
+``` r
+library(dplyr, warn.conflicts = FALSE)
 qhp::enrollment2014
 #> Source: local data frame [29,685 x 8]
 #> 
@@ -79,9 +81,13 @@ qhp::enrollment2015
 #> 10    3044 New Hampshire            172  3044    NH       33015
 #> ..     ...           ...            ...   ...   ...         ...
 #> Variables not shown: countyname (chr), copop (int)
+```
 
-# 2014: Top 10 counties with residents enrolling in FFM
-# Sorted according to total enrollment
+Top 10 Counties, Sorted According to Total Enrollment
+-----------------------------------------------------
+
+``` r
+# 2014
 qhp::enrollment2014 %>% 
   na.omit() %>% 
   group_by(countygeoid) %>% 
@@ -106,7 +112,37 @@ qhp::enrollment2014 %>%
 #> 10       42101 Philadelphia County      60724    PA 1526006
 #> ..         ...                 ...        ...   ...     ...
 
-# Sorted according to enrollment per 100,000 residents
+# 2015
+qhp::enrollment2015 %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
+  arrange(desc(enrollment))
+#> Source: local data frame [2,425 x 5]
+#> 
+#>    countygeoid        countyname enrollment state   copop
+#>          (int)             (chr)      (int) (chr)   (int)
+#> 1        12086 Miami-Dade County     392071    FL 2496435
+#> 2        48201     Harris County     228358    TX 4092459
+#> 3        12011    Broward County     221918    FL 1748066
+#> 4        17031       Cook County     155294    IL 5194675
+#> 5        12099 Palm Beach County     136989    FL 1320134
+#> 6        48113     Dallas County     130814    TX 2368139
+#> 7         4013   Maricopa County     129625    AZ 3817117
+#> 8        12095     Orange County     111125    FL 1145956
+#> 9        48029      Bexar County      93833    TX 1714773
+#> 10       48439    Tarrant County      91381    TX 1809034
+#> ..         ...               ...        ...   ...     ...
+```
+
+Top 10 Counties, Sorted According to Enrollment per 10,000 Residents
+--------------------------------------------------------------------
+
+``` r
+# 2014
 qhp::enrollment2014 %>% 
   na.omit() %>% 
   group_by(countygeoid) %>% 
@@ -114,26 +150,119 @@ qhp::enrollment2014 %>%
             enrollment = sum(PlanSelections),
             state = first(state),
             copop = first(copop)) %>% 
-  mutate(enroll_per100000 = enrollment / copop * 100000) %>% 
-  filter(copop >= 100000) %>% 
-  arrange(desc(enroll_per100000))
-#> Source: local data frame [425 x 6]
+  mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
+  # filter(copop >= 100000) %>% 
+  arrange(desc(enroll_per100000)) -> en_county_2014
+en_county_2014
+#> Source: local data frame [2,237 x 6]
 #> 
-#>    countygeoid        countyname enrollment state   copop enroll_per100000
-#>          (int)             (chr)      (int) (chr)   (int)            (dbl)
-#> 1        12086 Miami-Dade County     256975    FL 2496435        10293.679
-#> 2        12011    Broward County     152745    FL 1748066         8737.942
-#> 3        12097    Osceola County      18655    FL  268685         6943.075
-#> 4        16019 Bonneville County       6427    ID  104234         6165.934
-#> 5        12095     Orange County      66862    FL 1145956         5834.604
-#> 6        12099 Palm Beach County      75851    FL 1320134         5745.705
-#> 7        37021   Buncombe County      13567    NC  238318         5692.814
-#> 8        28049      Hinds County      13648    MS  245285         5564.140
-#> 9        13089     DeKalb County      37971    GA  691893         5487.987
-#> 10       13135   Gwinnett County      42625    GA  805321         5292.920
-#> ..         ...               ...        ...   ...     ...              ...
+#>    countygeoid           countyname enrollment state   copop
+#>          (int)                (chr)      (int) (chr)   (int)
+#> 1        16081         Teton County       1251    ID   10170
+#> 2        12086    Miami-Dade County     256975    FL 2496435
+#> 3        31171        Thomas County         65    NE     647
+#> 4        16013        Blaine County       2142    ID   21376
+#> 5        31071      Garfield County        202    NE    2049
+#> 6         2230 Skagway Municipality         95    AK     968
+#> 7        12011       Broward County     152745    FL 1748066
+#> 8        16085        Valley County        776    ID    9862
+#> 9        49019         Grand County        706    UT    9225
+#> 10       16043       Fremont County       1002    ID   13242
+#> ..         ...                  ...        ...   ...     ...
+#> Variables not shown: enroll_per100000 (dbl)
 
-# 2014: Total enrollment by states
+# 2015
+qhp::enrollment2015 %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
+  mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
+  # filter(copop >= 100000) %>% 
+  arrange(desc(enroll_per100000)) -> en_county_2015
+en_county_2015
+#> Source: local data frame [2,425 x 6]
+#> 
+#>    countygeoid           countyname enrollment state   copop
+#>          (int)                (chr)      (int) (chr)   (int)
+#> 1         2230 Skagway Municipality        161    AK     968
+#> 2        31071      Garfield County        322    NE    2049
+#> 3        12086    Miami-Dade County     392071    FL 2496435
+#> 4        31171        Thomas County         99    NE     647
+#> 5        31091        Hooker County         95    NE     736
+#> 6        12011       Broward County     221918    FL 1748066
+#> 7        56039         Teton County       2615    WY   21294
+#> 8        12097       Osceola County      31642    FL  268685
+#> 9        51640           Galax city        823    VA    7042
+#> 10       49019         Grand County       1028    UT    9225
+#> ..         ...                  ...        ...   ...     ...
+#> Variables not shown: enroll_per100000 (dbl)
+```
+
+Enrolloment per 10,000 Residents by counties
+--------------------------------------------
+
+``` r
+# devtools::install_github("jjchern/usmapdata")
+en_county_2014 %>% 
+  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
+  arrange(countygeoid) -> en_county_2014
+
+usmapdata::county %>% 
+  left_join(en_county_2014, by = c("id" = "countygeoid")) -> en_county_2014_map
+
+library(ggplot2)
+
+ggplot() +
+  geom_map(data = en_county_2014_map, map = en_county_2014_map,
+           aes(x = long, y = lat, map_id = id, fill = enroll_per100000),
+           colour = alpha("white", 0.1), size=0.2) +
+  geom_map(data = usmapdata::state, map = usmapdata::state,
+           aes(x = long, y = lat, map_id = id),
+           colour = "white", fill = "NA") +
+  coord_map("albers", lat0 = 30, lat1 = 40) +
+  viridis::scale_fill_viridis(option = "B") +
+  ggtitle("Enrollment per 10,000 Population in 2014") +
+  ggthemes::theme_map() +
+  theme(legend.position = c(.85, .3),
+        legend.title=element_blank())
+```
+
+![](README-county-map-1.png)
+
+``` r
+
+en_county_2015 %>% 
+  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
+  arrange(countygeoid) -> en_county_2015
+
+usmapdata::county %>% 
+  left_join(en_county_2015, by = c("id" = "countygeoid")) -> en_county_2015_map
+
+ggplot() +
+  geom_map(data = en_county_2015_map, map = en_county_2015_map,
+           aes(x = long, y = lat, map_id = id, fill = enroll_per100000),
+           colour = alpha("white", 0.1), size=0.2) +
+  geom_map(data = usmapdata::state, map = usmapdata::state,
+           aes(x = long, y = lat, map_id = id),
+           colour = "white", fill = "NA") +
+  coord_map("albers", lat0 = 30, lat1 = 40) +
+  viridis::scale_fill_viridis(option = "B") +
+  ggtitle("Enrollment per 10,000 Population in 2015") +
+  ggthemes::theme_map() +
+  theme(legend.position = c(.85, .3),
+        legend.title=element_blank())
+```
+
+![](README-county-map-2.png)
+
+Total enrollment by states
+--------------------------
+
+``` r
+# 2014
 qhp::enrollment2014 %>% 
   na.omit() %>% 
   group_by(state) %>% 
@@ -182,61 +311,7 @@ qhp::enrollment2014 %>%
 #> 35    SD   South Dakota       9448
 #> 36    ND   North Dakota       6650
 
-
-# 2015: Top 10 counties with residents enrolling in FFM
-# Sorted according to total enrollment
-qhp::enrollment2015 %>% 
-  na.omit() %>% 
-  group_by(countygeoid) %>% 
-  summarise(countyname = first(countyname),
-            enrollment = sum(PlanSelections),
-            state = first(state),
-            copop = first(copop)) %>% 
-  arrange(desc(enrollment))
-#> Source: local data frame [2,425 x 5]
-#> 
-#>    countygeoid        countyname enrollment state   copop
-#>          (int)             (chr)      (int) (chr)   (int)
-#> 1        12086 Miami-Dade County     392071    FL 2496435
-#> 2        48201     Harris County     228358    TX 4092459
-#> 3        12011    Broward County     221918    FL 1748066
-#> 4        17031       Cook County     155294    IL 5194675
-#> 5        12099 Palm Beach County     136989    FL 1320134
-#> 6        48113     Dallas County     130814    TX 2368139
-#> 7         4013   Maricopa County     129625    AZ 3817117
-#> 8        12095     Orange County     111125    FL 1145956
-#> 9        48029      Bexar County      93833    TX 1714773
-#> 10       48439    Tarrant County      91381    TX 1809034
-#> ..         ...               ...        ...   ...     ...
-
-# Sorted according to enrollment per 1000 residents
-qhp::enrollment2015 %>% 
-  na.omit() %>% 
-  group_by(countygeoid) %>% 
-  summarise(countyname = first(countyname),
-            enrollment = sum(PlanSelections),
-            state = first(state),
-            copop = first(copop)) %>% 
-  mutate(enroll_per100000 = enrollment / copop * 100000) %>% 
-  filter(copop >= 100000) %>% 
-  arrange(desc(enroll_per100000))
-#> Source: local data frame [432 x 6]
-#> 
-#>    countygeoid        countyname enrollment state   copop enroll_per100000
-#>          (int)             (chr)      (int) (chr)   (int)            (dbl)
-#> 1        12086 Miami-Dade County     392071    FL 2496435        15705.236
-#> 2        12011    Broward County     221918    FL 1748066        12695.058
-#> 3        12097    Osceola County      31642    FL  268685        11776.616
-#> 4        12099 Palm Beach County     136989    FL 1320134        10376.901
-#> 5        12095     Orange County     111125    FL 1145956         9697.144
-#> 6        37021   Buncombe County      20936    NC  238318         8784.901
-#> 7        13135   Gwinnett County      69010    GA  805321         8569.254
-#> 8        13089     DeKalb County      56580    GA  691893         8177.565
-#> 9        28049      Hinds County      19949    MS  245285         8132.988
-#> 10       12111  St. Lucie County      22078    FL  277789         7947.759
-#> ..         ...               ...        ...   ...     ...              ...
-
-# 2015: Total enrollment by states
+# 2015
 qhp::enrollment2015 %>% 
   na.omit() %>% 
   group_by(state) %>% 
@@ -285,8 +360,12 @@ qhp::enrollment2015 %>%
 #> 35    WY        Wyoming      19108
 #> 36    SD   South Dakota      16612
 #> 37    ND   North Dakota      13270
+```
 
-# Health Plan Data
+Health Plan Data
+----------------
+
+``` r
 qhp::qhp2014
 #> Source: local data frame [81,015 x 130]
 #> 
