@@ -152,8 +152,7 @@ qhp::enrollment2014 %>%
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
   # filter(copop >= 100000) %>% 
-  arrange(desc(enroll_per100000)) -> en_county_2014
-en_county_2014
+  arrange(desc(enroll_per100000))
 #> Source: local data frame [2,237 x 6]
 #> 
 #>    countygeoid           countyname enrollment state   copop
@@ -181,8 +180,7 @@ qhp::enrollment2015 %>%
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
   # filter(copop >= 100000) %>% 
-  arrange(desc(enroll_per100000)) -> en_county_2015
-en_county_2015
+  arrange(desc(enroll_per100000))
 #> Source: local data frame [2,425 x 6]
 #> 
 #>    countygeoid           countyname enrollment state   copop
@@ -204,59 +202,7 @@ en_county_2015
 Enrolloment per 10,000 Residents by counties
 --------------------------------------------
 
-``` r
-# devtools::install_github("jjchern/usmapdata")
-en_county_2014 %>% 
-  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
-  arrange(countygeoid) -> en_county_2014
-
-usmapdata::county %>% 
-  left_join(en_county_2014, by = c("id" = "countygeoid")) -> en_county_2014_map
-
-library(ggplot2)
-
-ggplot() +
-  geom_map(data = en_county_2014_map, map = en_county_2014_map,
-           aes(x = long, y = lat, map_id = id, fill = enroll_per100000),
-           colour = alpha("white", 0.1), size=0.2) +
-  geom_map(data = usmapdata::state, map = usmapdata::state,
-           aes(x = long, y = lat, map_id = id),
-           colour = "white", fill = "NA") +
-  coord_map("albers", lat0 = 30, lat1 = 40) +
-  viridis::scale_fill_viridis(option = "B") +
-  ggtitle("Enrollment per 10,000 Population in 2014") +
-  ggthemes::theme_map() +
-  theme(legend.position = c(.85, .3),
-        legend.title=element_blank())
-```
-
-![](README-county-map-1.png)
-
-``` r
-
-en_county_2015 %>% 
-  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
-  arrange(countygeoid) -> en_county_2015
-
-usmapdata::county %>% 
-  left_join(en_county_2015, by = c("id" = "countygeoid")) -> en_county_2015_map
-
-ggplot() +
-  geom_map(data = en_county_2015_map, map = en_county_2015_map,
-           aes(x = long, y = lat, map_id = id, fill = enroll_per100000),
-           colour = alpha("white", 0.1), size=0.2) +
-  geom_map(data = usmapdata::state, map = usmapdata::state,
-           aes(x = long, y = lat, map_id = id),
-           colour = "white", fill = "NA") +
-  coord_map("albers", lat0 = 30, lat1 = 40) +
-  viridis::scale_fill_viridis(option = "B") +
-  ggtitle("Enrollment per 10,000 Population in 2015") +
-  ggthemes::theme_map() +
-  theme(legend.position = c(.85, .3),
-        legend.title=element_blank())
-```
-
-![](README-county-map-2.png)
+![](README-county-map-1.png)![](README-county-map-2.png)
 
 Total enrollment by states
 --------------------------

@@ -98,8 +98,35 @@ qhp::enrollment2014 %>%
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
   # filter(copop >= 100000) %>% 
+  arrange(desc(enroll_per100000))
+
+# 2015
+qhp::enrollment2015 %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
+  mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
+  # filter(copop >= 100000) %>% 
+  arrange(desc(enroll_per100000))
+```
+
+## Enrolloment per 10,000 Residents by counties
+
+```{r county-map, echo=FALSE}
+# 2014
+qhp::enrollment2014 %>% 
+  na.omit() %>% 
+  group_by(countygeoid) %>% 
+  summarise(countyname = first(countyname),
+            enrollment = sum(PlanSelections),
+            state = first(state),
+            copop = first(copop)) %>% 
+  mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
+  # filter(copop >= 100000) %>% 
   arrange(desc(enroll_per100000)) -> en_county_2014
-en_county_2014
 
 # 2015
 qhp::enrollment2015 %>% 
@@ -112,12 +139,7 @@ qhp::enrollment2015 %>%
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
   # filter(copop >= 100000) %>% 
   arrange(desc(enroll_per100000)) -> en_county_2015
-en_county_2015
-```
 
-## Enrolloment per 10,000 Residents by counties
-
-```{r county-map}
 # devtools::install_github("jjchern/usmapdata")
 en_county_2014 %>% 
   mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
