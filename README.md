@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![Travis-CI Build Status](https://travis-ci.org/jjchern/qhp.svg?branch=master)](https://travis-ci.org/jjchern/qhp)
 
@@ -51,7 +52,7 @@ qhp::enrollment2014
 #> Source: local data frame [29,685 x 8]
 #> 
 #>    ZipCode     StateName PlanSelections  zcta state countygeoid
-#>      (int)         (chr)          (int) (int) (chr)       (int)
+#>      <int>         <chr>          <int> <int> <chr>       <int>
 #> 1     3031 New Hampshire            332  3031    NH       33011
 #> 2     3032 New Hampshire            150  3032    NH       33015
 #> 3     3033 New Hampshire            151  3033    NH       33011
@@ -63,12 +64,12 @@ qhp::enrollment2014
 #> 9     3041 New Hampshire             NA  3038    NH       33015
 #> 10    3042 New Hampshire            195  3042    NH       33015
 #> ..     ...           ...            ...   ...   ...         ...
-#> Variables not shown: countyname (chr), copop (int)
+#> Variables not shown: countyname <chr>, copop <int>.
 qhp::enrollment2015
 #> Source: local data frame [14,619 x 8]
 #> 
 #>    ZipCode     StateName PlanSelections  zcta state countygeoid
-#>      (int)         (chr)          (int) (int) (chr)       (int)
+#>      <int>         <chr>          <int> <int> <chr>       <int>
 #> 1     3031 New Hampshire            471  3031    NH       33011
 #> 2     3032 New Hampshire            215  3032    NH       33015
 #> 3     3033 New Hampshire            228  3033    NH       33011
@@ -80,7 +81,7 @@ qhp::enrollment2015
 #> 9     3043 New Hampshire             79  3043    NH       33011
 #> 10    3044 New Hampshire            172  3044    NH       33015
 #> ..     ...           ...            ...   ...   ...         ...
-#> Variables not shown: countyname (chr), copop (int)
+#> Variables not shown: countyname <chr>, copop <int>.
 ```
 
 Top 10 Counties, Sorted According to Total Enrollment
@@ -99,7 +100,7 @@ qhp::enrollment2014 %>%
 #> Source: local data frame [2,237 x 5]
 #> 
 #>    countygeoid          countyname enrollment state   copop
-#>          (int)               (chr)      (int) (chr)   (int)
+#>          <int>               <chr>      <int> <chr>   <int>
 #> 1        12086   Miami-Dade County     256975    FL 2496435
 #> 2        12011      Broward County     152745    FL 1748066
 #> 3        48201       Harris County     139424    TX 4092459
@@ -124,7 +125,7 @@ qhp::enrollment2015 %>%
 #> Source: local data frame [2,425 x 5]
 #> 
 #>    countygeoid        countyname enrollment state   copop
-#>          (int)             (chr)      (int) (chr)   (int)
+#>          <int>             <chr>      <int> <chr>   <int>
 #> 1        12086 Miami-Dade County     392071    FL 2496435
 #> 2        48201     Harris County     228358    TX 4092459
 #> 3        12011    Broward County     221918    FL 1748066
@@ -151,24 +152,23 @@ qhp::enrollment2014 %>%
             state = first(state),
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
-  # filter(copop >= 100000) %>% 
+  filter(copop >= 100000) %>% 
   arrange(desc(enroll_per100000))
-#> Source: local data frame [2,237 x 6]
+#> Source: local data frame [425 x 6]
 #> 
-#>    countygeoid           countyname enrollment state   copop
-#>          (int)                (chr)      (int) (chr)   (int)
-#> 1        16081         Teton County       1251    ID   10170
-#> 2        12086    Miami-Dade County     256975    FL 2496435
-#> 3        31171        Thomas County         65    NE     647
-#> 4        16013        Blaine County       2142    ID   21376
-#> 5        31071      Garfield County        202    NE    2049
-#> 6         2230 Skagway Municipality         95    AK     968
-#> 7        12011       Broward County     152745    FL 1748066
-#> 8        16085        Valley County        776    ID    9862
-#> 9        49019         Grand County        706    UT    9225
-#> 10       16043       Fremont County       1002    ID   13242
-#> ..         ...                  ...        ...   ...     ...
-#> Variables not shown: enroll_per100000 (dbl)
+#>    countygeoid        countyname enrollment state   copop enroll_per100000
+#>          <int>             <chr>      <int> <chr>   <int>            <dbl>
+#> 1        12086 Miami-Dade County     256975    FL 2496435        1029.3679
+#> 2        12011    Broward County     152745    FL 1748066         873.7942
+#> 3        12097    Osceola County      18655    FL  268685         694.3075
+#> 4        16019 Bonneville County       6427    ID  104234         616.5934
+#> 5        12095     Orange County      66862    FL 1145956         583.4604
+#> 6        12099 Palm Beach County      75851    FL 1320134         574.5705
+#> 7        37021   Buncombe County      13567    NC  238318         569.2814
+#> 8        28049      Hinds County      13648    MS  245285         556.4140
+#> 9        13089     DeKalb County      37971    GA  691893         548.7987
+#> 10       13135   Gwinnett County      42625    GA  805321         529.2920
+#> ..         ...               ...        ...   ...     ...              ...
 
 # 2015
 qhp::enrollment2015 %>% 
@@ -179,24 +179,23 @@ qhp::enrollment2015 %>%
             state = first(state),
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
-  # filter(copop >= 100000) %>% 
+  filter(copop >= 100000) %>% 
   arrange(desc(enroll_per100000))
-#> Source: local data frame [2,425 x 6]
+#> Source: local data frame [432 x 6]
 #> 
-#>    countygeoid           countyname enrollment state   copop
-#>          (int)                (chr)      (int) (chr)   (int)
-#> 1         2230 Skagway Municipality        161    AK     968
-#> 2        31071      Garfield County        322    NE    2049
-#> 3        12086    Miami-Dade County     392071    FL 2496435
-#> 4        31171        Thomas County         99    NE     647
-#> 5        31091        Hooker County         95    NE     736
-#> 6        12011       Broward County     221918    FL 1748066
-#> 7        56039         Teton County       2615    WY   21294
-#> 8        12097       Osceola County      31642    FL  268685
-#> 9        51640           Galax city        823    VA    7042
-#> 10       49019         Grand County       1028    UT    9225
-#> ..         ...                  ...        ...   ...     ...
-#> Variables not shown: enroll_per100000 (dbl)
+#>    countygeoid        countyname enrollment state   copop enroll_per100000
+#>          <int>             <chr>      <int> <chr>   <int>            <dbl>
+#> 1        12086 Miami-Dade County     392071    FL 2496435        1570.5236
+#> 2        12011    Broward County     221918    FL 1748066        1269.5058
+#> 3        12097    Osceola County      31642    FL  268685        1177.6616
+#> 4        12099 Palm Beach County     136989    FL 1320134        1037.6901
+#> 5        12095     Orange County     111125    FL 1145956         969.7144
+#> 6        37021   Buncombe County      20936    NC  238318         878.4901
+#> 7        13135   Gwinnett County      69010    GA  805321         856.9254
+#> 8        13089     DeKalb County      56580    GA  691893         817.7565
+#> 9        28049      Hinds County      19949    MS  245285         813.2988
+#> 10       12111  St. Lucie County      22078    FL  277789         794.7759
+#> ..         ...               ...        ...   ...     ...              ...
 ```
 
 Enrolloment per 10,000 Residents by counties
@@ -219,7 +218,7 @@ qhp::enrollment2014 %>%
 #> Source: local data frame [36 x 3]
 #> 
 #>    state      statename enrollment
-#>    (chr)          (chr)      (int)
+#>    <chr>          <chr>      <int>
 #> 1     FL        Florida     979721
 #> 2     TX          Texas     719657
 #> 3     NC North Carolina     352841
@@ -268,7 +267,7 @@ qhp::enrollment2015 %>%
 #> Source: local data frame [37 x 3]
 #> 
 #>    state      statename enrollment
-#>    (chr)          (chr)      (int)
+#>    <chr>          <chr>      <int>
 #> 1     FL        Florida    1591227
 #> 2     TX          Texas    1192085
 #> 3     NC North Carolina     556319
@@ -316,7 +315,7 @@ qhp::qhp2014
 #> Source: local data frame [81,015 x 130]
 #> 
 #>    state         county metal_level
-#>    (chr)          (chr)       (chr)
+#>    <chr>          <chr>       <chr>
 #> 1     AK ALEUTIANS EAST      Bronze
 #> 2     AK ALEUTIANS EAST      Silver
 #> 3     AK ALEUTIANS EAST        Gold
@@ -328,88 +327,70 @@ qhp::qhp2014
 #> 9     AK ALEUTIANS EAST      Bronze
 #> 10    AK ALEUTIANS EAST      Silver
 #> ..   ...            ...         ...
-#> Variables not shown: issuer_name (chr), plan_id_standard_component (chr),
-#>   plan_marketing_name (chr), plan_type (chr), rating_area (chr),
-#>   child_only_offering (chr), source (chr),
-#>   customer_service_phone_number_local (chr),
-#>   customer_service_phone_number_toll_free (chr),
-#>   customer_service_phone_number_tty (chr), network_url (chr),
-#>   plan_brochure_url (chr), summary_of_benefits_url (chr),
-#>   drug_formulary_url (chr), adult_dental (dbl), child_dental (chr),
-#>   premium_scenarios (dbl), premium_child (dbl),
-#>   premium_adult_individual_age_21 (dbl), premium_adult_individual_age_27
-#>   (dbl), premium_adult_individual_age_30 (dbl),
-#>   premium_adult_individual_age_40 (dbl), premium_adult_individual_age_50
-#>   (dbl), premium_adult_individual_age_60 (dbl), premium_couple_21 (dbl),
-#>   premium_couple_30 (dbl), premium_couple_40 (dbl), premium_couple_50
-#>   (dbl), premium_couple_60 (dbl), couple_1_child_age_21 (dbl),
-#>   couple_1_child_age_30 (dbl), couple_1_child_age_40 (dbl),
-#>   couple_1_child_age_50 (dbl), couple_2_children_age_21 (dbl),
-#>   couple_2_children_age_30 (dbl), couple_2_children_age_40 (dbl),
-#>   couple_2_children_age_50 (dbl), couple_3_or_more_children_age_21 (dbl),
-#>   couple_3_or_more_children_age_30 (dbl), couple_3_or_more_children_age_40
-#>   (dbl), couple_3_or_more_children_age_50 (dbl), individual_1_child_age_21
-#>   (dbl), individual_1_child_age_30 (dbl), individual_1_child_age_40 (dbl),
-#>   individual_1_child_age_50 (dbl), individual_2_children_age_21 (dbl),
-#>   individual_2_children_age_30 (dbl), individual_2_children_age_40 (dbl),
-#>   individual_2_children_age_50 (dbl), individual_3_or_more_children_age_21
-#>   (dbl), individual_3_or_more_children_age_30 (dbl),
-#>   individual_3_or_more_children_age_40 (dbl),
-#>   individual_3_or_more_children_age_50 (dbl), standard_plan_cost_sharing
-#>   (dbl), medical_deductible_individual_standard (chr),
-#>   drug_deductible_individual_standard (chr),
-#>   medical_deductible_family_standard (chr),
-#>   drug_deductible_family_standard (chr),
-#>   medical_maximum_out_of_pocket_individual_standard (chr),
-#>   drug_maximum_out_of_pocket_individual_standard (chr),
-#>   medical_maximum_out_of_pocket_family_standard (chr),
-#>   drug_maximum_out_of_pocket_family_standard (chr),
-#>   primary_care_physician_standard (chr), specialist_standard (chr),
-#>   emergency_room_standard (chr), inpatient_facility_standard (chr),
-#>   inpatient_physician_standard (chr), generic_drugs_standard (chr),
-#>   preferred_brand_drugs_standard (chr), non_preferred_brand_drugs_standard
-#>   (chr), specialty_drugs_standard (chr),
-#>   73_percent_actuarial_value_silver_plan_cost_sharing (dbl),
-#>   medical_deductible_individual_73_percent (chr),
-#>   drug_deductible_individual_73_percent (chr),
-#>   medical_deductible_family_73_percent (chr),
-#>   drug_deductible_family_73_percent (chr),
-#>   medical_maximum_out_of_pocket_individual_73_percent (chr),
-#>   drug_maximum_out_of_pocket_individual_73_percent (chr),
-#>   medical_maximum_out_of_pocket_family_73_percent (chr),
-#>   drug_maximum_out_of_pocket_family_73_percent (chr),
-#>   primary_care_physician_73_percent (chr), specialist_73_percent (chr),
-#>   emergency_room_73_percent (chr), inpatient_facility_73_percent (chr),
-#>   inpatient_physician_73_percent (chr), generic_drugs_73_percent (chr),
-#>   preferred_brand_drugs_73_percent (chr),
-#>   non_preferred_brand_drugs_73_percent (chr), specialty_drugs_73_percent
-#>   (chr), 87_percent_actuarial_value_silver_plan_cost_sharing (dbl),
-#>   medical_deductible_individual_87_percent (chr),
-#>   drug_deductible_individual_87_percent (chr),
-#>   medical_deductible_family_87_percent (chr),
-#>   drug_deductible_family_87_percent (chr),
-#>   medical_maximum_out_of_pocket_individual_87_percent (chr),
-#>   drug_maximum_out_of_pocket_individual_87_percent (chr),
-#>   medical_maximum_out_of_pocket_family_87_percent (chr),
-#>   drug_maximum_out_of_pocket_family_87_percent (chr),
-#>   primary_care_physician_87_percent (chr), specialist_87_percent (chr),
-#>   emergency_room_87_percent (chr), inpatient_facility_87_percent (chr),
-#>   inpatient_physician_87_percent (chr), generic_drugs_87_percent (chr),
-#>   preferred_brand_drugs_87_percent (chr),
-#>   non_preferred_brand_drugs_87_percent (chr), specialty_drugs_87_percent
-#>   (chr), 94_percent_actuarial_value_silver_plan_cost_sharing (dbl),
-#>   medical_deductible_individual_94_percent (chr),
-#>   drug_deductible_individual_94_percent (chr),
-#>   medical_deductible_family_94_percent (chr),
-#>   drug_deductible_family_94_percent (chr),
-#>   medical_maximum_out_of_pocket_individual_94_percent (chr),
-#>   drug_maximum_out_of_pocket_individual_94_percent (chr),
-#>   medical_maximum_out_of_pocket_family_94_percent (chr),
-#>   drug_maximum_out_of_pocket_family_94_percent (chr),
-#>   primary_care_physician_94_percent (chr), specialist_94_percent (chr),
-#>   emergency_room_94_percent (chr), inpatient_facility_94_percent (chr),
-#>   inpatient_physician_94_percent (chr), generic_drugs_94_percent (chr),
-#>   preferred_brand_drugs_94_percent (chr),
-#>   non_preferred_brand_drugs_94_percent (chr), specialty_drugs_94_percent
-#>   (chr), fips (int), state.y (chr)
+#> Variables not shown: issuer_name <chr>, plan_id_standard_component <chr>,
+#>   plan_marketing_name <chr>, plan_type <chr>, rating_area <chr>,
+#>   child_only_offering <chr>, source <chr>,
+#>   customer_service_phone_number_local <chr>,
+#>   customer_service_phone_number_toll_free <chr>,
+#>   customer_service_phone_number_tty <chr>, network_url <chr>,
+#>   plan_brochure_url <chr>, summary_of_benefits_url <chr>,
+#>   drug_formulary_url <chr>, adult_dental <dbl>, child_dental <chr>,
+#>   premium_scenarios <dbl>, premium_child <dbl>,
+#>   premium_adult_individual_age_21 <dbl>, premium_adult_individual_age_27
+#>   <dbl>, premium_adult_individual_age_30 <dbl>,
+#>   premium_adult_individual_age_40 <dbl>, premium_adult_individual_age_50
+#>   <dbl>, premium_adult_individual_age_60 <dbl>, premium_couple_21 <dbl>,
+#>   premium_couple_30 <dbl>, premium_couple_40 <dbl>, premium_couple_50
+#>   <dbl>, premium_couple_60 <dbl>, couple_1_child_age_21 <dbl>,
+#>   couple_1_child_age_30 <dbl>, couple_1_child_age_40 <dbl>,
+#>   couple_1_child_age_50 <dbl>, couple_2_children_age_21 <dbl>,
+#>   couple_2_children_age_30 <dbl>, couple_2_children_age_40 <dbl>,
+#>   couple_2_children_age_50 <dbl>, couple_3_or_more_children_age_21 <dbl>,
+#>   couple_3_or_more_children_age_30 <dbl>, couple_3_or_more_children_age_40
+#>   <dbl>, couple_3_or_more_children_age_50 <dbl>, individual_1_child_age_21
+#>   <dbl>, individual_1_child_age_30 <dbl>, individual_1_child_age_40 <dbl>,
+#>   individual_1_child_age_50 <dbl>, individual_2_children_age_21 <dbl>,
+#>   individual_2_children_age_30 <dbl>, individual_2_children_age_40 <dbl>,
+#>   individual_2_children_age_50 <dbl>, individual_3_or_more_children_age_21
+#>   <dbl>, individual_3_or_more_children_age_30 <dbl>,
+#>   individual_3_or_more_children_age_40 <dbl>,
+#>   individual_3_or_more_children_age_50 <dbl>, standard_plan_cost_sharing
+#>   <dbl>, medical_deductible_individual_standard <chr>,
+#>   drug_deductible_individual_standard <chr>,
+#>   medical_deductible_family_standard <chr>,
+#>   drug_deductible_family_standard <chr>,
+#>   medical_maximum_out_of_pocket_individual_standard <chr>,
+#>   drug_maximum_out_of_pocket_individual_standard <chr>,
+#>   medical_maximum_out_of_pocket_family_standard <chr>,
+#>   drug_maximum_out_of_pocket_family_standard <chr>,
+#>   primary_care_physician_standard <chr>, specialist_standard <chr>,
+#>   emergency_room_standard <chr>, inpatient_facility_standard <chr>,
+#>   inpatient_physician_standard <chr>, generic_drugs_standard <chr>,
+#>   preferred_brand_drugs_standard <chr>, non_preferred_brand_drugs_standard
+#>   <chr>, specialty_drugs_standard <chr>,
+#>   73_percent_actuarial_value_silver_plan_cost_sharing <dbl>,
+#>   medical_deductible_individual_73_percent <chr>,
+#>   drug_deductible_individual_73_percent <chr>,
+#>   medical_deductible_family_73_percent <chr>,
+#>   drug_deductible_family_73_percent <chr>,
+#>   medical_maximum_out_of_pocket_individual_73_percent <chr>,
+#>   drug_maximum_out_of_pocket_individual_73_percent <chr>,
+#>   medical_maximum_out_of_pocket_family_73_percent <chr>,
+#>   drug_maximum_out_of_pocket_family_73_percent <chr>,
+#>   primary_care_physician_73_percent <chr>, specialist_73_percent <chr>,
+#>   emergency_room_73_percent <chr>, inpatient_facility_73_percent <chr>,
+#>   inpatient_physician_73_percent <chr>, generic_drugs_73_percent <chr>,
+#>   preferred_brand_drugs_73_percent <chr>,
+#>   non_preferred_brand_drugs_73_percent <chr>, specialty_drugs_73_percent
+#>   <chr>, 87_percent_actuarial_value_silver_plan_cost_sharing <dbl>,
+#>   medical_deductible_individual_87_percent <chr>,
+#>   drug_deductible_individual_87_percent <chr>,
+#>   medical_deductible_family_87_percent <chr>,
+#>   drug_deductible_family_87_percent <chr>,
+#>   medical_maximum_out_of_pocket_individual_87_percent <chr>,
+#>   drug_maximum_out_of_pocket_individual_87_percent <chr>,
+#>   medical_maximum_out_of_pocket_family_87_percent <chr>,
+#>   drug_maximum_out_of_pocket_family_87_percent <chr>,
+#>   primary_care_physician_87_percent <chr>, specialist_87_percent <chr>,
+#>   and 27 more <...>.
 ```

@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -10,7 +8,9 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "README-",
+  warning = FALSE,
+  message = FALSE
 )
 ```
 
@@ -97,7 +97,7 @@ qhp::enrollment2014 %>%
             state = first(state),
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
-  # filter(copop >= 100000) %>% 
+  filter(copop >= 100000) %>% 
   arrange(desc(enroll_per100000))
 
 # 2015
@@ -109,7 +109,7 @@ qhp::enrollment2015 %>%
             state = first(state),
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
-  # filter(copop >= 100000) %>% 
+  filter(copop >= 100000) %>% 
   arrange(desc(enroll_per100000))
 ```
 
@@ -126,7 +126,9 @@ qhp::enrollment2014 %>%
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
   # filter(copop >= 100000) %>% 
-  arrange(desc(enroll_per100000)) -> en_county_2014
+  arrange(desc(enroll_per100000)) %>% 
+  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
+  arrange(countygeoid) -> en_county_2014
 
 # 2015
 qhp::enrollment2015 %>% 
@@ -138,48 +140,55 @@ qhp::enrollment2015 %>%
             copop = first(copop)) %>% 
   mutate(enroll_per100000 = enrollment / copop * 10000) %>% 
   # filter(copop >= 100000) %>% 
-  arrange(desc(enroll_per100000)) -> en_county_2015
+  arrange(desc(enroll_per100000)) %>% 
+  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
+  arrange(countygeoid) -> en_county_2015
 
 # devtools::install_github("jjchern/usmapdata")
-en_county_2014 %>% 
-  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
-  arrange(countygeoid) -> en_county_2014
+usmapdata::county %>% 
+  left_join(en_county_2014, by = c("id" = "countygeoid")) %>% 
+  mutate(region = id) -> en_county_2014_map
 
 usmapdata::county %>% 
-  left_join(en_county_2014, by = c("id" = "countygeoid")) -> en_county_2014_map
+  left_join(en_county_2015, by = c("id" = "countygeoid")) %>% 
+  mutate(region = id) -> en_county_2015_map
+
+en_county_2014_map %>% mutate(year = 2014) -> en_county_2014_map
+en_county_2015_map %>% mutate(year = 2015) -> en_county_2015_map
+en_county_map = bind_rows(en_county_2014_map, en_county_2015_map)
+
+usmapdata::state %>% 
+  mutate(region = id) -> state_map
 
 library(ggplot2)
 
 ggplot() +
   geom_map(data = en_county_2014_map, map = en_county_2014_map,
-           aes(x = long, y = lat, map_id = id, fill = enroll_per100000),
+           aes(x = long, y = lat, map_id = region, fill = enroll_per100000),
            colour = alpha("white", 0.1), size=0.2) +
-  geom_map(data = usmapdata::state, map = usmapdata::state,
-           aes(x = long, y = lat, map_id = id),
+  geom_map(data = state_map, map = state_map,
+           aes(x = long, y = lat, map_id = region),
            colour = "white", fill = "NA") +
   coord_map("albers", lat0 = 30, lat1 = 40) +
-  viridis::scale_fill_viridis(option = "B") +
+  scale_fill_gradientn(colors = viridis::viridis(en_county_map$enroll_per100000, option = "B"),
+                       limits=c(min(en_county_map$enroll_per100000, na.rm = TRUE),
+                                max(en_county_map$enroll_per100000, na.rm = TRUE))) +
   ggtitle("Enrollment per 10,000 Population in 2014") +
   ggthemes::theme_map() +
   theme(legend.position = c(.85, .3),
         legend.title=element_blank())
 
-en_county_2015 %>% 
-  mutate(countygeoid = sprintf("%05.0f", countygeoid)) %>% 
-  arrange(countygeoid) -> en_county_2015
-
-usmapdata::county %>% 
-  left_join(en_county_2015, by = c("id" = "countygeoid")) -> en_county_2015_map
-
 ggplot() +
   geom_map(data = en_county_2015_map, map = en_county_2015_map,
-           aes(x = long, y = lat, map_id = id, fill = enroll_per100000),
+           aes(x = long, y = lat, map_id = region, fill = enroll_per100000),
            colour = alpha("white", 0.1), size=0.2) +
-  geom_map(data = usmapdata::state, map = usmapdata::state,
-           aes(x = long, y = lat, map_id = id),
+  geom_map(data = state_map, map = state_map,
+           aes(x = long, y = lat, map_id = region),
            colour = "white", fill = "NA") +
   coord_map("albers", lat0 = 30, lat1 = 40) +
-  viridis::scale_fill_viridis(option = "B") +
+  scale_fill_gradientn(colors = viridis::viridis(en_county_map$enroll_per100000, option = "B"),
+                       limits=c(min(en_county_map$enroll_per100000, na.rm = TRUE),
+                                max(en_county_map$enroll_per100000, na.rm = TRUE))) +
   ggtitle("Enrollment per 10,000 Population in 2015") +
   ggthemes::theme_map() +
   theme(legend.position = c(.85, .3),
