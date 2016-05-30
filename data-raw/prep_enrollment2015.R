@@ -4,6 +4,7 @@ library(magrittr)
 # Download 2015 Plan selections by ZIP Code for the 37 states -------------
 # Source: http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015
 # (Nov. 15, 2014 — Feb. 15, 2015, including SEP activity through Feb. 22, 2015)
+# Count: 8.8 million plan selections for 37 states
 
 url = "http://aspe.hhs.gov/sites/default/files/aspe-files/83841/2015-feb-22-marketplace-plan-selections-zip.xlsx"
 lcl = "data-raw/zipcode-enrollment-2015.xlsx"
@@ -25,6 +26,10 @@ enrollment2015 %<>%
 enrollment2015
 
 # Zip code to county link file --------------------------------------------
+
+# devtools::install_github("jjchern/zcta")
+# devtools::install_github("jjchern/gaze")
+# devtools::install_github("jjchern/zipzcta")
 
 zctacounty = zcta::zcta_county_rel_10 %>%
   select(zcta5, state, county, geoid, poppt, zpoppct, copop) %>%

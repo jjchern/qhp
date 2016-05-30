@@ -3,6 +3,8 @@ library(magrittr)
 
 # Download 2014 Plan selections by ZIP Code for the 36 states -------------
 # Source: http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014
+# Initial Marketplace open enrollment period from October 1, 2013 through March 31, 2014, including additional special enrollment period activity reported through April 19, 2014.
+# Count: 5.45 million plan selections for 36 states
 
 if (!file.exists("data-raw/zipcode-enrollment-2014.csv")) {
   download.file(url = "http://aspe.hhs.gov/sites/default/files/aspe-files/83866/zipcode-enrollment.xlsx",
@@ -26,6 +28,10 @@ enrollment2014 %<>%
 enrollment2014
 
 # Zip code to county link file --------------------------------------------
+
+# devtools::install_github("jjchern/zcta")
+# devtools::install_github("jjchern/gaze")
+# devtools::install_github("jjchern/zipzcta")
 
 zctacounty = zcta::zcta_county_rel_10 %>%
   select(zcta5, state, county, geoid, poppt, zpoppct, copop) %>%
