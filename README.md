@@ -419,3 +419,24 @@ qhp::qhp2014
 #>   primary_care_physician_87_percent <chr>, specialist_87_percent <chr>,
 #>   and 27 more <...>.
 ```
+
+Reference
+=========
+
+-   [Health Insurance Market Reforms](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/index.html)
+    -   [Annual Limits](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Annual-Limits.html)
+    -   [Coverage for Young Adults](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Coverage-for-Young-Adults.html)
+    -   [Grandfathered Plans](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Grandfathered-Plans.html)
+    -   [Market Rating Reforms](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Market-Rating-Reforms.html)
+        -   [**Geographic Rating Areas**](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/state-gra.html)
+        -   [**Other State Specific Rating Variations**](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/state-rating.html)
+    -   [Medical Loss Ratio](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Medical-Loss-Ratio.html)
+    -   [Minimum Essential Coverage](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/minimum-essential-coverage.html)
+    -   [Patient's Bill of Rights](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Patients-Bill-of-Rights.html)
+    -   [Prevention](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Prevention.html)
+    -   [Review of Insurance Rates](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Review-of-Insurance-Rates.html)
+        -   [**Rate Review Grants**](https://www.cms.gov/CCIIO/Resources/Rate-Review-Grants/index.html)
+            -   [Overview of the health insurance premium grant program](https://www.cms.gov/CCIIO/Resources/Regulations-and-Guidance/rates.html)
+    -   [Student Health Plans](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/Student-Health-Plans.html)
+    -   [Self-Funded, Non-Federal Governmental Plans](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/nonfedgovplans.html)
+    -   [Compliance](https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Market-Reforms/compliance.html)
