@@ -90,6 +90,23 @@ qhp::enrollment2015
 #> 10    3044 New Hampshire            172  3044    NH       33015
 #> ..     ...           ...            ...   ...   ...         ...
 #> Variables not shown: countyname <chr>, copop <int>.
+qhp::enrollment2016
+#> Source: local data frame [15,198 x 7]
+#> 
+#>    ZipCode PlanSelections  zcta state countygeoid          countyname
+#>      <int>          <int> <int> <chr>       <int>               <chr>
+#> 1     3031            511  3031    NH       33011 Hillsborough County
+#> 2     3032            241  3032    NH       33015   Rockingham County
+#> 3     3033            231  3033    NH       33011 Hillsborough County
+#> 4     3034            203  3034    NH       33015   Rockingham County
+#> 5     3036            193  3036    NH       33015   Rockingham County
+#> 6     3037            208  3037    NH       33015   Rockingham County
+#> 7     3038           1367  3038    NH       33015   Rockingham County
+#> 8     3042            321  3042    NH       33015   Rockingham County
+#> 9     3043             84  3043    NH       33011 Hillsborough County
+#> 10    3044            180  3044    NH       33015   Rockingham County
+#> ..     ...            ...   ...   ...         ...                 ...
+#> Variables not shown: copop <int>.
 ```
 
 Top 10 Counties, Sorted According to Total Enrollment
@@ -209,7 +226,7 @@ qhp::enrollment2015 %>%
 Enrolloment per 10,000 Residents by counties
 --------------------------------------------
 
-![](README-county-map-1.png)![](README-county-map-2.png)
+![](README-county-map-1.png)![](README-county-map-2.png)![](README-county-map-3.png)
 
 Total enrollment by states
 --------------------------

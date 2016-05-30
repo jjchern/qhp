@@ -2,7 +2,7 @@ Package: qhp
 Title: Qualified Health Plan Data in the Health Insurance Marketplace
 Version: 0.0.0.9000
 Authors@R: 'JJ Chen <jiajia.chern@gmail.com> [aut, cre]'
-Description: Qualified Health Plan Data in the Health Insurance Marketplace
+Description: An R data package for Qualified Health Plan Data in the Health Insurance Marketplace.
 Depends:
     R (>= 3.2.2)
 License: CC0
