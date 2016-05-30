@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 # About
 
-This package includes Qualified Health Plan (qhp) data in the Health Insurance Marketplace.
+This package includes Qualified Health Plan (qhp) data in the Health Insurance Marketplace. So far it contains three years of enrollment data and the initial health plan data.
 
 # Installation
 
@@ -30,10 +30,15 @@ devtools::install_github("jjchern/qhp")
 
 # Links
 
+## General
+
 - [ASPE AFFORDABLE CARE ACT RESEARCH](http://aspe.hhs.gov/affordable-care-act-research)
+
+## Sources
+
 - [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE, 2014](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-september-2014)
-- [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE,
-2015](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015)
+- [PLAN SELECTIONS BY ZIP CODE IN THE HEALTH INSURANCE MARKETPLACE, 2015](http://aspe.hhs.gov/plan-selections-zip-code-health-insurance-marketplace-april-2015)
+- [PLAN SELECTIONS BY ZIP CODE AND COUNTY IN THE HEALTH INSURANCE MARKETPLACE: MARCH 2016](https://aspe.hhs.gov/basic-report/plan-selections-zip-code-and-county-health-insurance-marketplace-march-2016)
 - [HEALTH PLAN DATASETS](https://www.healthcare.gov/health-and-dental-plan-datasets-for-researchers-and-issuers/)
 
 ## Inital Enrollment Data
