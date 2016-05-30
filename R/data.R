@@ -12,6 +12,13 @@
 #' supported State-based Marketplaces.
 "enrollment2015"
 
+#' Health Insurance Marketplace Plan Selections by ZIP Code
+#'
+#' Data are for the 38 states that are participating in the
+#' Federally-facilitated Marketplace or have State Partnership Marketplaces or
+#' supported State-based Marketplaces.
+"enrollment2016"
+
 #' Health Plan Data (Individual and family) 2014
 #'
 #' @source \url{https://www.healthcare.gov/health-and-dental-plan-datasets-for-researchers-and-issuers}
