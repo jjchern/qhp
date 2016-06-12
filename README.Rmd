@@ -270,7 +270,25 @@ qhp::qhp2014
 
 # Reference
 
-- [Summary of the Affordable Care Act](http://kff.org/health-reform/fact-sheet/summary-of-the-affordable-care-act/)
+- [Summary of the Affordable Care Act from KFF](http://kff.org/health-reform/fact-sheet/summary-of-the-affordable-care-act/)
+
+- [42 CFR Part 435, Subpart C - Options for Coverage as Categorically Needy: § 435.218 — Individuals with MAGI-based income above 133 percent FPL.](https://www.law.cornell.edu/cfr/text/42/435.218)
+- [45 CFR 155.305 - Eligibility standards.](https://www.law.cornell.edu/cfr/text/45/155.305)
+
+- [45 CFR 155.320 - Verification process related to eligibility for insurance affordability programs. - Verification process for advance payments of the premium tax credit and cost-sharing reductions.](https://www.law.cornell.edu/cfr/text/45/155.320)
+
+- [26 CFR 1.36B-3 - Computing the premium assistance credit amount.](https://www.law.cornell.edu/cfr/text/26/1.36B-3)
+
+- [26 CFR 1.36B-1 - Premium tax credit definitions.](https://www.law.cornell.edu/cfr/text/26/1.36B-1)
+- [45 CFR 155.300 - Definitions and general standards for eligibility determinations.](https://www.law.cornell.edu/cfr/text/45/155.300):
+    - Applicable Children's Health Insurance Program (CHIP) MAGI-based income standard
+    - Applicable Medicaid modified adjusted gross income (MAGI)-based income standard
+    - Federal poverty level or FPL
+    - Insurance affordability program
+    - MAGI-based income
+    
+- [26 U.S. Code § 36B - Refundable credit for coverage under a qualified health plan](https://www.law.cornell.edu/uscode/text/26/36B)
+    - Applicable percentage
 
 - [42 U.S. Code Subchapter IV - AFFORDABLE COVERAGE CHOICES FOR ALL AMERICANS](https://www.law.cornell.edu/uscode/text/42/chapter-157/subchapter-IV)
     - [PART A - Premium Tax Credits and Cost-Sharing Reductions (§ 18071)](https://www.law.cornell.edu/uscode/text/42/chapter-157/subchapter-IV/part-A)
